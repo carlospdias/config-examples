@@ -1,0 +1,20 @@
+services:
+  db :
+    image: mariadb:11.3.2
+    container_name: my-mariadb
+    environment:
+      MARIADB_USER: user
+      MARIADB_PASSWORD: mariadbPW
+      MARIADB_ROOT_PASSWORD: mariadbrootPW
+    volumes:
+      - "./mariadb-data/data:/var/lib/mysql/data/"
+      - "./mariadb-data/logs:/var/lib/mysql/logs/"
+    ports:
+      - 3308:3306
+      
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1 
